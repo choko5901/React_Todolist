@@ -1,16 +1,19 @@
 import React from 'react';
 
-function Input ({onChange, onClick}) {
+function Input ({onChange, onClick, content, Focus}) {
 return(
 <div className='Container'>
     <div><p className='Title'> Todolist</p></div>
-   
-    <input
-    name='list'
-    placeholder='write your task'
-    onChange={onChange}/>
-    <button onClick={onClick} >+</button>
-    
+    <div>
+        <input
+            name='list'
+            placeholder='Write your task'
+            onChange={onChange}
+            value = {content}
+            ref={Focus}
+        />
+        <button onClick={onClick} >+</button>
+    </div> 
 </div>
 )
 
