@@ -3,6 +3,7 @@ import './App.css';
 import Input from './components/Input';
 import InputList from './components/InputList';
 import React, {useState, useRef} from 'react';
+import Edit from './components/Edit';
 
 function App() {
   
@@ -99,9 +100,18 @@ const onDelete = (a) => {
   Focus.current.focus();
 }
 // 수정
+const [Change, setChange] = useState(false);
+
+const onEdit = () => {
+setChange(!Change);
+}
+
+const [selectContent, setSeletContent]=useState()
+
+const select= () => {
 
 
-
+}
 
 
 console.log(todos)
@@ -109,7 +119,9 @@ console.log(todos)
   return (
     <div>
       <Input onClick={onAdd} onChange={onChange} content={new_todos.content} Focus={Focus}/>
-      <InputList todolist={todos} onDelete={onDelete}/>
+      <InputList todolist={todos} onDelete={onDelete} onEdit={onEdit} select={select}/>
+      {Change &&<Edit todolist={todos}/>}
+      {/* 이거 && 쓸때 왜 {} 안에서 사용하는가? */}
     </div>
   );
 }
