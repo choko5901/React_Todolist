@@ -73,33 +73,38 @@ const onAdd= () =>{
   Focus.current.focus();
       
 }
-console.log(todos)
 
 //삭제
 const onDelete = (a) => {
-  
-  console.log(a)
 
   const Delete_List = todos.filter(List => (List.id !== a));
- 
-  const f_Delete_list =
   
-  // const fix = Delete_List.map((acs) =>{
-  //   acs.id > a
+    Delete_List.map(F_id => 
+      {if(F_id.id > a){
+      F_id.id = F_id.id -1}
+      })
+// ㄹㅇ id값  수정 개 ㅈ같았따
+// map 개념을 잘생각해 이거 자체가 기존의 배열 속 요소를 하나씩 꺼내 
+// 요소의 프로 퍼티를 핸들링 가능하게끔 해주고 
+// 핸들링 후 새로운 배열로 그대로 Delete_List로 만들어 준거임
+// 여기서 문득 기억이 if 문이나 JS 문법을 쓰려면 {}를 써야 한다 라고 들었던거 같기도 저 중괄호
+// 쓰는 이유 좀 질문 해보자
 
-  // })
+  // console.log(Delete_List);
 
-  // console.log(fix);
-
-
-  
- 
   
   setTodos(Delete_List);
 
-  nextId.current -=1;
+  nextId.current -=1; // 다음 추가 시 이전 ID 값 부터 다시 수행하기 위해 하나 줄었으니
   Focus.current.focus();
 }
+// 수정
+
+
+
+
+
+console.log(todos)
 
   return (
     <div>
