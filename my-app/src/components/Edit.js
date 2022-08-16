@@ -1,23 +1,45 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
-function Edit({todolist}) {
+function Edit({selectContent, onModify}) {
         
-    const [EditContent, setEditContent]=useState('');
+   
+    const [value, setValue]=useState('');
 
-    function onChange(e) {
+
+
+    const onChange = (e) => {
         
-        setEditContent(e.target.value);
+       setValue(e.target.value)
+
+       
     };
 
+    useEffect(() =>{
+        setValue(selectContent.content);
+    },[])
 
+    const onSubmit = (e) => {
+       e.preventDefault();
+
+       onModify(selectContent.id, value);
+
+    }
+
+    
 
 
 
     return(
         <div>
+            <form onSubmit={onSubmit}>
             <h3>수정할 내용을 작성하세요</h3>
-            <input onChange={onChange}/>
-            <button>Modify</button>
+            <input 
+                type= "text"
+                value={value}
+                onChange={onChange}
+                />
+            <button type="submit">Modify</button>
+            </form>
         </div>
     )
 

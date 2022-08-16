@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Input from './components/Input';
 import InputList from './components/InputList';
@@ -53,7 +53,7 @@ const onAdd= () =>{
     id:nextId.current,
     content: new_todos.content
   }
-  console.log(Add_Task)
+  // console.log(Add_Task)
 
   setTodos([...todos, Add_Task]);
 
@@ -106,21 +106,47 @@ const onEdit = () => {
 setChange(!Change);
 }
 
-const [selectContent, setSeletContent]=useState()
+const [selectContent, setSeletContent]=useState();
 
-const select= () => {
+const onSelect= (doing) => {
+  
+  setSeletContent(doing);
 
+}
+
+const onModify = (id,Newcontent) => {
+
+  // setTodos(
+  //     todos.map((data)=> (id === data.id ? {...data, content:Newcontent} : data))
+  //   );
+  setTodos(
+      todos.map((data) => 
+        
+        (data.id == id ? (
+          { 
+            id:data.id,
+            content:Newcontent
+            
+          }
+        ) : data)
+      ));
+
+    console.log(todos)
+
+      setChange(!Change);
 
 }
 
 
-console.log(todos)
+
+
+// console.log(todos)
 
   return (
     <div>
       <Input onClick={onAdd} onChange={onChange} content={new_todos.content} Focus={Focus}/>
-      <InputList todolist={todos} onDelete={onDelete} onEdit={onEdit} select={select}/>
-      {Change &&<Edit todolist={todos}/>}
+      <InputList todolist={todos} onDelete={onDelete} onEdit={onEdit} onSelect={onSelect}/>
+      {Change &&<Edit selectContent={selectContent} onModify={onModify}/>}
       {/* 이거 && 쓸때 왜 {} 안에서 사용하는가? */}
     </div>
   );
